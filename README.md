@@ -7,7 +7,8 @@ This project is about utilizing a [Unscented Kalman Filter](https://en.wikipedia
 
 This project involves the use of a simulator which can be downloaded from [here](https://github.com/udacity/self-driving-car-sim/releases). To predict the position of an object, a *constant turn rate and velocity magnitude (CTRV)* motion model is used. The simulator provides LiDAR and Radar measurements that are utilized by the Unscented Kalman Filter(UKF) to provide estimated position & velocity of the object of interest.
 The UKF works in two steps; *predict* and *update*. In the *predict* step, based on the time difference alone (between previous & current timestamps), a prediction is made, whereas in the *update* step, the belief in object's location is updated based on the received sensor measurements.
-![UKF Stes]((/images/ukf-steps.jpg))
+
+![UKF Steps](/images/ukf-steps.jpg)
 
 **INPUT**: values provided by the simulator to the c++ program
 
