@@ -197,39 +197,38 @@ This repository includes two files that can be used to set up and install [uWebS
 2. Make a build directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make` 
    * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
-4. Run it: `./ExtendedKF `
+4. Run it: `./UnscentedKF `
 
 
 ## Usage
 
 ### With Simulator
 
-Follow the build instructions above. Once the program is running, start the simulator. You should see a *connected!!!* message upon successful connection between the simulator and the c++ program. Hit the *Start button*. The output should be same as shown [here](https://github.com/wkhattak/Extended-Kalman-Filters#accuracy).
+Follow the build instructions above. Once the program is running, start the simulator. You should see a *connected!!!* message upon successful connection between the simulator and the c++ program. Hit the *Start button*. The output should be same as shown [here](https://github.com/wkhattak/Unscented-Kalman-Filters#accuracy).
 
 ### Without Simulator
 
 Instead of installing the [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) library and running the simulator, following approach can be adopted:
 
-1. Remove the [main.cpp](https://github.com/wkhattak/Extended-Kalman-Filters/blob/master/src/main.cpp) file.
-2. Rename the [main_without_uwebsocketio.cpp](https://github.com/wkhattak/Extended-Kalman-Filters/blob/master/src/main_without_uwebsocketio.cpp) to `main.cpp`.
+1. Remove the [main.cpp](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/main.cpp) file.
+2. Rename the [main_without_uwebsocketio.cpp](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/main_without_uwebsocketio.cpp) to `main.cpp`.
 3. Copy the file `data\obj_pose-laser-radar-synthetic-input.txt` to the parent directory where the code is running.
 4. Compile/run the project.
 5. Upon successful execution, you should see a file `estimates.txt` created in the directory where the program is running. The file contains the data in this format:
 
-`px_est py_est vx_est vy_est px_meas py_meas px_gt 
-py_gt vx_gt vy_gt px_rmse py_rmse vx_rmse vy_rmse`
+`p_x p_y velocity yaw yaw_rate v_x v_y px_meas py_meas x_groundtruth y_groundtruth vx_groundtruth vy_groundtruth px_rmse py_rmse vx_rmse vy_rmse nis_lidar nis_radar`
 
 
 ## Output Data Visualizations
 
 Estimated position of the object is shown as green triangles:
 
-![Simulator Zoomed In](/images/simulator-2.jpg)
+![Simulator Zoomed In](/images/simulator-2.png)
 
 
-Visualization generated using the `estimates.txt` file:
+Visualizations generated using the `estimates.txt` file:
 
-![Output Data Visualization](/images/data-visualization.png)
+![Output Data Visualization](/images/visualization-main.png)
 
 
 ## License
