@@ -151,19 +151,16 @@ The algorithm follows the following guidelines:
 For example, consider the following code fragment:
 
 ```c++
-  float dt_2 = pow(dt,2);
-  float dt_3 = (pow(dt,3)/2);
-  float dt_3_x = dt_3 * noise_ax_;
-  float dt_3_y = dt_3 * noise_ay_;
-  float dt_4 = pow(dt,4)/4;
-  
-  ekf_.Q_ << (dt_4 * noise_ax_), 0, dt_3_x, 0,
-              0, (dt_4 * noise_ay_), 0, dt_3_y,
-              dt_3_x, 0, (dt_2 * noise_ax_), 0,
-              0, dt_3_y, 0, (dt_2 * noise_ay_);
+   // set weights
+    double weight_0 = lambda_aug_/(lambda_aug_ + n_aug_);
+    weights_(0) = weight_0;
+    for (int i = 1; i < 2*n_aug_+1; i++) {
+      double weight = 0.5/(n_aug_ + lambda_aug_);
+      weights_(i) = weight;
+    }
 ```
 
-Here, the *process covariance matrix* `Q_` is being updated by pre-computing certain values that are used more than once within the matrix.
+Here, the `weights_` class member has been initialized once and then used later multiple times, such at [ukf.cpp > line no. 269](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/ukf.cpp#L269), [ukf.cpp > line no. 281](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/ukf.cpp#L281), [ukf.cpp > line no. 314](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/ukf.cpp#L314), [ukf.cpp > line no. 323](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/ukf.cpp#L323), [ukf.cpp > line no. 350](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/ukf.cpp#L350), [ukf.cpp > line no. 404](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/ukf.cpp#L404) and [ukf.cpp > line no. 452](https://github.com/wkhattak/Unscented-Kalman-Filters/blob/master/src/ukf.cpp#L452).
 
 ## Directory Structure
 
