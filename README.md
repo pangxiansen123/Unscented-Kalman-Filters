@@ -226,9 +226,25 @@ Estimated position of the object is shown as green triangles:
 ![Simulator Zoomed In](/images/simulator-2.png)
 
 
-Visualizations generated using the `estimates.txt` file:
+Plot showing UKF estimates, measurements taken by the sensors and the ground truth:
 
 ![Output Data Visualization](/images/visualization-main.png)
+
+Plot showing estimated position x, measured position x and the ground truth:
+
+![Output Data Visualization](/images/visualization-px.png)
+
+Plot showing various estimated values, actual measurements and the ground truth for each time step:
+
+![Output Data Visualization](/images/visualization-all.png)
+
+Plot showing Normalized Innovation Squared(NIS) metric for LiDAR:
+
+![Output Data Visualization](/images/visualization-nis-lidar.png)
+
+Plot showing Normalized Innovation Squared(NIS) metric for Radar:
+
+![Output Data Visualization](/images/visualization-nis-radar.png)
 
 
 ## License
