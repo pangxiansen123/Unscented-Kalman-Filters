@@ -218,21 +218,44 @@ Instead of installing the [uWebSocketIO](https://github.com/uWebSockets/uWebSock
 
 `p_x p_y velocity yaw yaw_rate v_x v_y px_meas py_meas x_groundtruth y_groundtruth vx_groundtruth vy_groundtruth px_rmse py_rmse vx_rmse vy_rmse nis_lidar nis_radar`
 
+## Parameter Tuning
+
+To tune the process noise for linear acceleration `std_a_` and the process noise for angular acceleration `std_yawdd_`, a range of values were tested. Below table shows a selection of some values. The highlighted row indicates the selected parameter values based on the Root Mean Squared Error (RMSE) values.
+
+![Parameter Tuning](/images/param-tuning.png)
+
+## Result Comparison
+
+### UKF vs EKF
+
+UKF: `[0.0639373, 0.0834023, 0.330414, 0.212941]`
+
+EKF:  `[0.0964, 0.0853, 0.4154, 0.4316]`
+
+The visible reduction in the RMSE values is the result of employing a more complex motion model i.e. constant turn rate and velocity magnitude (CTRV) model as compared to the simple constant velocity (CV) model.
+
+### UKF (LiDAR only)
+
+`[0.102646, 0.0968415, 0.60547, 0.241321]`
+
+### UKF (Radar only)
+
+`[0.150655, 0.199968, 0.358357, 0.315003]`
 
 ## Output Data Visualizations
 
 Estimated position of the object is shown as green triangles:
 
-![Simulator Zoomed In](/images/simulator-2.png)
+![Plot 2](/images/simulator-2.png)
 
 
 Plot showing UKF estimates, measurements taken by the sensors and the ground truth:
 
-![Output Data Visualization](/images/visualization-main.png)
+![Plot 3](/images/visualization-main.png)
 
 Plot showing estimated position x, measured position x and the ground truth:
 
-![Output Data Visualization](/images/visualization-px.png)
+![Plot 4](/images/visualization-px.png)
 
 Plot showing various estimated values, actual measurements and the ground truth for each time step:
 
@@ -240,11 +263,11 @@ Plot showing various estimated values, actual measurements and the ground truth 
 
 Plot showing Normalized Innovation Squared(NIS) metric for LiDAR:
 
-![Output Data Visualization](/images/visualization-nis-lidar.png)
+![LiDAR NIS](/images/visualization-nis-lidar.png)
 
 Plot showing Normalized Innovation Squared(NIS) metric for Radar:
 
-![Output Data Visualization](/images/visualization-nis-radar.png)
+![Radar NIS](/images/visualization-nis-radar.png)
 
 
 ## License
